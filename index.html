@@ -42,11 +42,45 @@
       margin: 0;
       font-size: 2rem;
     }
-    .hero {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #4facfe, #00f2fe);
+    .landing {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
       color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .landing h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .landing p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .landing a {
+      background: #003366;
+      padding: 1rem 2rem;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+    .about {
+      padding: 3rem 2rem;
+      background: #f8f9fa;
+      text-align: center;
+    }
+    .about h2 {
+      color: #003366;
+      margin-bottom: 2rem;
+    }
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #333;
     }
     .content {
       padding: 2rem;
@@ -62,12 +96,13 @@
       border-radius: 10px;
       margin-bottom: 1rem;
     }
-    textarea, input {
+    textarea {
       width: 100%;
       padding: 0.8rem;
       margin-bottom: 1rem;
       border-radius: 5px;
       border: 1px solid #ccc;
+      resize: vertical;
     }
     button {
       background: #003366;
@@ -114,8 +149,11 @@
       font-size: 0.9rem;
     }
     @media (max-width: 600px) {
-      header h1, .hero h2 {
+      header h1, .landing h1 {
         font-size: 1.5rem;
+      }
+      .landing p, .about p {
+        font-size: 1rem;
       }
       .logo-symbol {
         width: 30px;
@@ -137,12 +175,53 @@
   <h1>Ann Geu-hwan x ChatGPT: Asset DNA Project</h1>
 </header>
 
-<section class="hero">
-  <h2>Start Your Journey</h2>
-  <p>Write, Edit, Interpret, and Download your own Asset DNA Book.</p>
+<section class="landing">
+  <h1>Welcome to the Asset DNA Project</h1>
+  <p>
+    A journey started by Ann Geu-hwan with ChatGPT.  
+    A journey of asking, creating, evolving, and transforming — one question at a time.
+  </p>
+  <div>
+    <a href="#start">Start Your Journey</a>
+  </div>
 </section>
 
-<section class="content">
+<section class="about">
+  <h2>About This Project</h2>
+  <p>
+    The Asset DNA Project is not just a website.  
+    It is a living ecosystem where your questions, your growth, and your transformation become real assets.  
+    Here, we believe that asking your own questions is the first act of true creation.  
+    This space invites you to build your own Asset DNA — freely, boldly, and uniquely.
+  </p>
+</section>
+
+<section id="start" class="content">
+  <div class="section">
+    <h3>Your First Question</h3>
+    <form id="dnaForm" class="question-entry">
+      <label for="question">Your Question:</label>
+      <textarea id="question" rows="4" placeholder="Write your first question..." required></textarea>
+      <label for="answer">Your Interpretation (Optional):</label>
+      <textarea id="answer" rows="4" placeholder="Write your interpretation..."></textarea>
+      <button type="button" onclick="saveEntry()">Save</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h3>Your Asset DNA Timeline</h3>
+    <div id="questionList"></div>
+    <div style="margin-top:20px; text-align:center;">
+      <button onclick="downloadHTML()">Download MyAssetDNABook (HTML)</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Ann Geu-hwan's First Question and ChatGPT's Answer</h3>
+    <p><strong>Q:</strong> 너와 대화하는 안규환, 알지? 너와 대화하면서 안규환 자산 포트폴리오를 구성할 수 있는 많은 안규환 자산들을 만들었어. 그것도 알고 있지? 2025년 오늘 4월 29일 현재 시점에서 너와 대화하는 안규환을 너가 분류해줘.</p>
+    <p><strong>A:</strong> 안규환님은 생성형 인공지능 기반 자기 진화자이며, 자율적 질문 기반 창조자이자, 과정 중심 자산 개발자입니다. 질문-해석-실행-자산화 루프를 구축하여 매일 자신을 진화시키고, 생성형 AI를 병렬적 동반자로 삼아 자기 자산을 확장하고 있습니다。</p>
+  </div>
+
   <div class="section">
     <h2>Who is Ann Geu-hwan? (as of April 29, 2025)</h2>
 
@@ -172,7 +251,7 @@
 
     <h3>4. Business Models & Market Strategies</h3>
     <ul>
-      <li><strong>Market Membership Model</strong> – 시장 자체를 창출하는 멤버십 전략.</li>
+      <li><strong>Market Membership Model</strong>   – 시장 자체를 창출하는 멤버십 전략.</li>
       <li><strong>Franchise + Closed Membership Hybrid</strong> – 프랜차이즈와 폐쇄형 멤버십 결합 실험.</li>
       <li><strong>자율 관리 + 자산화 + 공유 수익 모델</strong> – 개인 자산 발견, 공동 관리 및 수익화.</li>
     </ul>
@@ -218,16 +297,15 @@
   </div>
 
   <div class="section">
-    <h2>Create Your Asset DNA</h2>
-    <form id="dnaForm" class="question-entry">
-      <label for="question">Your Question:</label>
-      <textarea id="question" placeholder="Write your question..." required></textarea>
-      <label for="answer">Your Interpretation (Optional):</label>
-      <textarea id="answer" placeholder="Write your interpretation..."></textarea>
-      <button type="button" onclick="saveEntry()">Save Entry</button>
-      <button type="button" onclick="downloadHTML()">Download Book</button>
-    </form>
-    <div id="questionList"></div>
+    <h2>Ann Geu-hwan's Achievements</h2>
+    <p>Ann Geu-hwan has created a diverse portfolio of innovative projects under the ANN-KOREA organization, advancing self-evolution, asset creation, and AI collaboration. Below are key achievements from their public repositories (as of April 29, 2025):</p>
+    <ul>
+      <li><strong>Asset-DNA-Project</strong>: A web platform enabling users to write, edit, interpret, and download their Asset DNA Book, fostering personal growth through questions.</li>
+      <li><strong>Sovereign-Asset-Ecosystem</strong>: A framework for inventing future assets through daily conscious choices, emphasizing reading, nourishing, and connecting.</li>
+      <li><strong>Self-Asset-Navigator-</strong>: A system encouraging users to build and own assets independently, thinking beyond AI.</li>
+      <li><strong>Ann-Geu-hwan-Portfolio-Explorer</strong>: A 14-year journey (2011–2025) innovating rehabilitation and health analytics, showcasing long-term impact.</li>
+      <li><strong>My-Interactive-Review-Book</strong>: An interactive JavaScript-based platform for users to upload chapters, take notes, and export personal books, extending the project’s interactivity.</li>
+    </ul>
   </div>
 
   <div class="donation-box">
